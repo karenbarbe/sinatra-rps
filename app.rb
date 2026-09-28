@@ -1,9 +1,50 @@
 require "sinatra"
 require "sinatra/reloader"
 
+moves = ['rock', 'paper', 'scissors']
+
 get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  erb(:home)
+end
+
+get("/rock") do  
+  @computer_move = moves.sample
+
+  if @computer_move == "rock"
+    @outcome = "tied"
+  elsif @computer_move == "paper"
+    @outcome = "lost"
+  else
+    @outcome = "won"
+  end
+
+  erb(:rock)
+end
+
+get("/paper") do
+  @computer_move = moves.sample
+
+  if @computer_move == "rock"
+    @outcome = "won"
+  elsif @computer_move == "paper"
+    @outcome = "tied"
+  else
+    @outcome = "lost"
+  end
+
+  erb(:paper)
+end
+
+get("/scissors") do
+  @computer_move = moves.sample
+
+  if @computer_move == "rock"
+    @outcome = "lost"
+  elsif @computer_move == "paper"
+    @outcome = "won"
+  else
+    @outcome = "tied"
+  end
+
+  erb(:scissors)
 end
